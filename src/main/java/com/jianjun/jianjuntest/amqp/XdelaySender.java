@@ -21,6 +21,11 @@ public class XdelaySender {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
+    /**
+     * 延迟队列发送
+     * @param msg 需要发送的消息
+     * @param delayTime 延迟的时间 单位毫秒
+     */
     public void send(String msg, int delayTime) {
         System.out.println("delayTime" + delayTime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -32,5 +37,14 @@ public class XdelaySender {
                 return message;
             }
         });
+    }
+
+    /**
+     * 非延迟发送消息
+     * @param msg 需要发送的消息
+     */
+    public void sendHello(String msg) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        rabbitTemplate.convertAndSend(Constants.HELLO_QUEUE, msg);
     }
 }

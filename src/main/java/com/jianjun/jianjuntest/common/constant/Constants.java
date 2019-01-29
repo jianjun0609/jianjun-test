@@ -8,4 +8,5 @@ public class Constants {
     public static final String IMMEDIATE_QUEUE_XDELAY = "delayed_queue_xdelay";
     public static final String DELAYED_EXCHANGE_XDELAY = "delayed_exchange_xdelay";
     public static final String DELAY_ROUTING_KEY_XDELAY = "delay_routing_key_xdelay";
+    public static final String HELLO_QUEUE = "hello_queue";
 }

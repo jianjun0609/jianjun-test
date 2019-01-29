@@ -28,6 +28,13 @@ public class RabbitConfig {
         return new Queue(Constants.IMMEDIATE_QUEUE_XDELAY, true);
     }
 
+    // 创建一个hello消费队列（和延迟消息没关系，仅仅为了测试配置多个消息队列）
+    @Bean
+    public Queue helloQueue() {
+        // 第一个参数是创建的queue的名字，第二个参数是是否支持持久化
+        return new Queue(Constants.HELLO_QUEUE, true);
+    }
+
     @Bean
     public CustomExchange delayExchange() {
         Map<String, Object> args = new HashMap<>();

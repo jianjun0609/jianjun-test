@@ -19,4 +19,9 @@ public class XdelayReceiver {
     public void get(String booking) {
         System.out.println("----------------Receive" + booking);
     }
+
+    @RabbitListener(queues = Constants.HELLO_QUEUE)
+    public void getHello(String msg) {
+        System.out.println("----------------Receive" + msg);
+    }
 }
