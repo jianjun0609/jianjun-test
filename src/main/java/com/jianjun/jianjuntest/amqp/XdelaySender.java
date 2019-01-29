@@ -21,10 +21,10 @@ public class XdelaySender {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-    public void send(String booking, int delayTime) {
+    public void send(String msg, int delayTime) {
         System.out.println("delayTime" + delayTime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.rabbitTemplate.convertAndSend(Constants.DELAYED_EXCHANGE_XDELAY, Constants.DELAY_ROUTING_KEY_XDELAY, booking, new MessagePostProcessor() {
+        this.rabbitTemplate.convertAndSend(Constants.DELAYED_EXCHANGE_XDELAY, Constants.DELAY_ROUTING_KEY_XDELAY, msg, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
                 message.getMessageProperties().setDelay(delayTime);

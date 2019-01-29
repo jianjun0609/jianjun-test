@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -23,8 +24,8 @@ public class AmpbTestController {
 
     @GetMapping(value = "/test1")
     @ApiOperation(value = "amqp测试1", notes = "amqp测试1")
-    public String test1() {
-        xdelaySender.send("111111111111111111", 5);;
+    public String test1(@RequestParam String msg, @RequestParam int time) {
+        xdelaySender.send(msg, time);
         return "success";
     }
 
