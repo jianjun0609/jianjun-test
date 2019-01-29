@@ -8,6 +8,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +19,7 @@ import java.util.Date;
  * @date 2019/1/28 16:49
  */
 @Service
-public class XdelaySender {
+public class XSender {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -26,7 +29,7 @@ public class XdelaySender {
      * @param msg 需要发送的消息
      * @param delayTime 延迟的时间 单位毫秒
      */
-    public void send(String msg, int delayTime) {
+    public void sendDelay(String msg, int delayTime) {
         System.out.println("delayTime" + delayTime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.rabbitTemplate.convertAndSend(Constants.DELAYED_EXCHANGE_XDELAY, Constants.DELAY_ROUTING_KEY_XDELAY, msg, new MessagePostProcessor() {

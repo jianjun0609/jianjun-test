@@ -1,6 +1,6 @@
 package com.jianjun.jianjuntest.controller;
 
-import com.jianjun.jianjuntest.amqp.XdelaySender;
+import com.jianjun.jianjuntest.amqp.XSender;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +20,12 @@ import javax.annotation.Resource;
 public class AmpbTestController {
 
     @Resource
-    private XdelaySender xdelaySender;
+    private XSender xdelaySender;
 
     @GetMapping(value = "/sendDelayMsg")
     @ApiOperation(value = "amqp测试延迟队列消费信息", notes = "amqp测试延迟队列消费信息")
     public String sendDelayMsg(@RequestParam String msg, @RequestParam int time) {
-        xdelaySender.send(msg, time);
+        xdelaySender.sendDelay(msg, time);
         return "success";
     }
 

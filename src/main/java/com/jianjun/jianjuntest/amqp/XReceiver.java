@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableRabbit
 @Configuration
-public class XdelayReceiver {
+public class XReceiver {
 
     @RabbitListener(queues = Constants.IMMEDIATE_QUEUE_XDELAY)
-    public void get(String booking) {
-        System.out.println("----------------Receive" + booking);
+    public void get(String msg) {
+        System.out.println("----------------Receive" + msg);
     }
 
     @RabbitListener(queues = Constants.HELLO_QUEUE)
